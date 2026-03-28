@@ -8,6 +8,7 @@ type FilterType = 'all' | Status;
 interface TaskListProps {
   tasks: Task[];
   onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
   filter: FilterType;
   onFilterChange: (f: FilterType) => void;
   search: string;
@@ -22,7 +23,7 @@ const FILTERS: { label: string; value: FilterType }[] = [
   { label: 'Atrasada', value: 'late' },
 ];
 
-export default function TaskList({ tasks, onToggle, filter, onFilterChange, search, onSearchChange }: TaskListProps) {
+export default function TaskList({ tasks, onToggle, onDelete, filter, onFilterChange, search, onSearchChange }: TaskListProps) {
   const filtered = tasks.filter((t) => {
     const matchFilter = filter === 'all' || t.status === filter;
     const matchSearch =
@@ -50,12 +51,12 @@ export default function TaskList({ tasks, onToggle, filter, onFilterChange, sear
 
       <div className="tasks-list">
         {filtered.length === 0 ? (
-          <p style={{ padding: '24px', textAlign: 'center', color: 'var(--color-text-tertiary)', fontSize: '13px' }}>
+          <p style={{ padding: '24px', textAlign: 'center', color: 'var(--text-3)', fontSize: '13px' }}>
             Nenhuma atividade encontrada
           </p>
         ) : (
           filtered.map((task) => (
-            <TaskRow key={task.id} task={task} onToggle={onToggle} />
+            <TaskRow key={task.id} task={task} onToggle={onToggle} onDelete={onDelete} />
           ))
         )}
       </div>
