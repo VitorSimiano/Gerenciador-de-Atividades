@@ -1,4 +1,4 @@
-# TaskFlow — Gerenciador de Atividades
+## Gerenciador de Atividades
 
 Sistema de gerenciamento de atividades e projetos construído com **Next.js 15**, **TypeScript** e **CSS puro**.
 
@@ -36,28 +36,4 @@ Sistema de gerenciamento de atividades e projetos construído com **Next.js 15**
 - ✅ **Badge** de tarefas pendentes no menu
 - ✅ Totalmente tipado com TypeScript
 
-## Como rodar
 
-```bash
-# Instalar dependências
-npm install
-
-# Rodar em desenvolvimento
-npm run dev
-
-# Build para produção
-npm run build
-npm start
-```
-
-Acesse [http://localhost:3000](http://localhost:3000).
-
-## Como substituir no projeto existente
-
-Copie os arquivos seguindo a mesma estrutura de pastas para dentro do seu projeto. O arquivo `globals.css` **substitui** o existente em `app/globals.css`. O `tsconfig.json` pode ser mesclado com o existente (garanta que `@/*` esteja mapeado para `"./*"`).
-
-## Dependências adicionais
-
-```bash
-npm install lucide-react
-```
