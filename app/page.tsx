@@ -1,13 +1,14 @@
 'use client';
 
+import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import { Task, Status } from '@/types';
-import Sidebar from '../componentes/Sidebar';
-import StatCard from '../componentes/StatCard';
-import TaskList from '../componentes/TaskList';
-import ProjectProgress from '../componentes/ProjectProgress';
-import ActivityFeed from '../componentes/ActivityFeed';
-import NewTaskModal from '../componentes/NewTaskModal';
+import AppSidebar from './componentes/layout/AppSidebar';
+import StatCard from './componentes/StatCard';
+import TaskList from './componentes/TaskList';
+import ProjectProgress from './componentes/ProjectProgress';
+import ActivityFeed from './componentes/ActivityFeed';
+import NewTaskModal from './componentes/NewTaskModal';
 import { fetchTasks, updateTask, deleteTask } from '@/services/taskService';
 import { Search, Plus, CheckCircle2, Clock, AlertCircle, ListChecks, Loader2 } from 'lucide-react';
 
@@ -67,7 +68,7 @@ export default function Home() {
 
   return (
     <div className="app-root">
-      <Sidebar activePage={page} onNavigate={setPage} pendingCount={pending} />
+      <AppSidebar activePage={page} onNavigate={setPage} pendingCount={pending} />
 
       <div className="main">
         <header className="topbar">
@@ -83,7 +84,7 @@ export default function Home() {
             />
           </div>
           <button className="btn btn-primary" onClick={() => setModalOpen(true)}>
-            <Plus size={14} strokeWidth={2.5} />
+            <Plus size={14} />
             Nova Atividade
           </button>
         </header>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Task, Priority } from '@/types';
-import { TaskSchema, TaskFormData } from '@/lib/schemas';
+import { TaskSchema, TaskFormData } from '../lib/schemas';
 import { PROJECT_NAMES, TEAM_MEMBERS } from '@/data';
 import { createTask } from '@/services/taskService';
 import { X, Loader2 } from 'lucide-react';

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getTaskById, updateTask, deleteTask } from '@/lib/db';
-import { UpdateTaskSchema } from '@/lib/schemas';
+import { getTaskById, updateTask, deleteTask } from '@/app/lib/db';
+import { UpdateTaskSchema } from '@/app/lib/schemas';
 
 type Params = { params: Promise<{ id: string }> };
 

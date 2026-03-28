@@ -1,5 +1,5 @@
 import { Task, Status } from '@/types';
-import { TaskFormData } from '@/lib/schemas';
+import { TaskFormData } from '@/app/lib/schemas';
 
 const BASE = '/api/tasks';
 

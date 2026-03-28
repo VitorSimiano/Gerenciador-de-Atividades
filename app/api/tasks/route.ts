@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllTasks, createTask } from '@/lib/db';
-import { TaskSchema } from '@/lib/schemas';
+import { getAllTasks, createTask } from '@/app/lib/db';
+import { TaskSchema } from '@/app/lib/schemas';
 
 // GET /api/tasks — lista todas as tarefas
 export async function GET(req: NextRequest) {

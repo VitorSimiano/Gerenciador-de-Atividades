@@ -23,7 +23,7 @@ export default function TaskRow({ task, onToggle, onDelete }: TaskRowProps) {
         className={`task-check ${isDone ? 'done' : ''}`}
         aria-label={isDone ? 'Marcar como pendente' : 'Marcar como concluída'}
       >
-        {isDone && <Check size={10} strokeWidth={3} color="white" />}
+        {isDone && <Check size={10} color="white" />}
       </button>
 
       <div className="task-info">
