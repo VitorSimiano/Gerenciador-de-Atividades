@@ -1,46 +1,82 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { LayoutDashboard, CheckSquare, Settings, Users } from "lucide-react";
-import clsx from "clsx";
+import React from 'react';
+import { LayoutDashboard, CheckSquare, FolderOpen, Calendar, Users, Settings } from 'lucide-react';
 
-const navItems = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Tarefas", href: "/tarefas", icon: CheckSquare },
-  { label: "Equipes", href: "/equipes", icon: Users },
-  { label: "Configurações", href: "/configuracoes", icon: Settings },
+type Page = 'dashboard' | 'atividades';
+
+interface SidebarProps {
+  activePage: Page;
+  onNavigate: (page: Page) => void;
+  pendingCount: number;
+}
+
+const NAV_ITEMS = [
+  { id: 'dashboard' as Page, label: 'Dashboard', Icon: LayoutDashboard },
+  { id: 'atividades' as Page, label: 'Atividades', Icon: CheckSquare, badge: true },
 ];
 
-export default function AppSidebar() {
-  const pathname = usePathname();
+const OTHER_ITEMS = [
+  { label: 'Projetos', Icon: FolderOpen },
+  { label: 'Calendário', Icon: Calendar },
+  { label: 'Equipe', Icon: Users },
+];
 
+export default function Sidebar({ activePage, onNavigate, pendingCount }: SidebarProps) {
   return (
-    <aside className="w-64 border-r border-slate-200 bg-white p-4">
-      <h2 className="mb-6 text-2xl font-bold">TaskManager</h2>
+    <aside className="sidebar">
+      {/* Logo */}
+      <div className="sidebar-logo">
+        <div className="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <span className="logo-text">TaskFlow</span>
+      </div>
 
-      <nav className="space-y-2">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const active = pathname === item.href;
+      {/* Navigation */}
+      <nav className="sidebar-nav">
+        <p className="nav-section-label">Menu</p>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={clsx(
-                "flex items-center gap-3 rounded-lg px-3 py-2 transition",
-                active
-                  ? "bg-slate-900 text-white"
-                  : "text-slate-700 hover:bg-slate-100"
-              )}
-            >
-              <Icon size={18} />
-              <span>{item.label}</span>
-            </Link>
-          );
-        })}
+        {NAV_ITEMS.map(({ id, label, Icon, badge }) => (
+          <button
+            key={id}
+            onClick={() => onNavigate(id)}
+            className={`nav-item w-full text-left ${activePage === id ? 'active' : ''}`}
+          >
+            <Icon size={16} />
+            {label}
+            {badge && pendingCount > 0 && (
+              <span className="nav-badge">{pendingCount}</span>
+            )}
+          </button>
+        ))}
+
+        {OTHER_ITEMS.map(({ label, Icon }) => (
+          <button key={label} className="nav-item w-full text-left">
+            <Icon size={16} />
+            {label}
+          </button>
+        ))}
+
+        <p className="nav-section-label" style={{ marginTop: '8px' }}>Configurações</p>
+        <button className="nav-item w-full text-left">
+          <Settings size={16} />
+          Configurações
+        </button>
       </nav>
+
+      {/* User */}
+      <div className="sidebar-footer">
+        <div className="user-card">
+          <div className="avatar">VS</div>
+          <div>
+            <p className="user-name">Vitor Simiano</p>
+            <p className="user-role">Administrador</p>
+          </div>
+        </div>
+      </div>
     </aside>
   );
 }

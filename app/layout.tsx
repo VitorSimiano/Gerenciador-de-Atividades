@@ -1,19 +1,18 @@
-import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
+import { Geist } from 'next/font/google';
+import './globals.css';
+
+const geist = Geist({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Gerenciador de Tarefas",
-  description: "Sistema de gerenciamento de tarefas para empresa",
+  title: 'TaskFlow — Gerenciador de Atividades',
+  description: 'Sistema de gerenciamento de atividades e projetos',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className="bg-slate-100 text-slate-900">
-        {children}
-      </body>
+      <body className={geist.className}>{children}</body>
     </html>
   );
 }
